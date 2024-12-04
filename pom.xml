@@ -12,13 +12,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!--        <headless>${headless}</headless>-->
     </properties>
-
-<!--    <configuration>-->
-<!--        <projectProperties>-->
-<!--            <projectProperty>Environment=${Environment}</projectProperty>-->
-<!--        </projectProperties>-->
-<!--    </configuration>-->
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
@@ -27,17 +22,16 @@
             <artifactId>maven-core</artifactId>
             <version>3.9.9</version>
         </dependency>
-
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
             <version>1.49.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.20.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
@@ -50,9 +44,18 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.5.12</version>
-            <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.20.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,9 +76,6 @@
                 <version>3.5.2</version>
                 <configuration>
                     <properties>
-                        <!-- Work around. Surefire does not include enough
-                             information to disambiguate between different
-                             examples and scenarios. -->
                         <configurationParameters>
                             cucumber.junit-platform.naming-strategy=long
                         </configurationParameters>
