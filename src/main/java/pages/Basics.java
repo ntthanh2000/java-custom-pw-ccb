@@ -7,8 +7,6 @@ import utils.Hooks;
 
 public class Basics {
 //    Hooks hooks = new Hooks();
-//    Playwright playwright = hooks.getPlaywright();
-//    BrowserContext context = hooks.getBrowserContext();
     Page page = Hooks.getPage();
 
     public void goToUrl(String url) {

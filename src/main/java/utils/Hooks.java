@@ -14,7 +14,7 @@ public class Hooks {
     static Browser browser;
     static final Logger log = LoggerFactory.getLogger(Hooks.class);
     static final Utils utils = new Utils();
-    static BrowserContext context;
+    BrowserContext context;
     public static Page page;
 
 
@@ -23,10 +23,6 @@ public class Hooks {
         log.info("Opening browser...");
         playwright = Playwright.create();
         browser = utils.launchBrowser(playwright, "chrome");
-        log.info("Creating new context...");
-        context = browser.newContext();
-        log.info("Creating new page...");
-        page = context.newPage();
 
     }
 
@@ -36,26 +32,18 @@ public class Hooks {
         playwright.close();
     }
 
-//    @Before
-//    static void createContextAndPage() {
-//        log.info("Creating new context...");
-//        context = browser.newContext();
-//        log.info("Creating new page...");
-//        page = context.newPage();
-//    }
+    @Before
+    public void createContextAndPage() {
+        log.info("Creating new context...");
+        context = browser.newContext();
+        log.info("Creating new page...");
+        page = context.newPage();
+    }
 //
 //    @After
 //    static void closeContext() {
-////        context.close();
+//        context.close();
 //    }
-
-    public Playwright getPlaywright() {
-        return playwright;
-    }
-
-    public BrowserContext getBrowserContext() {
-        return context;
-    }
 
     public static Page getPage() {
         return page;
