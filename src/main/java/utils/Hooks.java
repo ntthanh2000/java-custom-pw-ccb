@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 public class Hooks {
     private static Playwright playwright;
     private static Browser browser;
-    private static Logger log = LoggerFactory.getLogger(Hooks.class);
-    private static Utils utils = new Utils();
+    private static final Logger log = LoggerFactory.getLogger(Hooks.class);
+    private static final Utils utils = new Utils();
     private BrowserContext context;
     private Page page;
 
@@ -41,15 +41,15 @@ public class Hooks {
         context.close();
     }
 
-    public Playwright getPlaywright(){
+    public Playwright getPlaywright() {
         return playwright;
     }
 
-    public BrowserContext getBrowserContext(){
+    public BrowserContext getBrowserContext() {
         return context;
     }
 
-    public Page getPage(){
+    public Page getPage() {
         return page;
     }
 }

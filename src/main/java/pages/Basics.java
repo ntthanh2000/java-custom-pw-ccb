@@ -15,7 +15,11 @@ public class Basics {
         page.navigate(url);
     }
 
-    public void getTextOfElement(){
+    public String getTextOfElement(){
+        return page.locator("button").innerText();
+    }
 
+    public Boolean getElementVisibility(){
+        return page.locator("button").isVisible();
     }
 }
