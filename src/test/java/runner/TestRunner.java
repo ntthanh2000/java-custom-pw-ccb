@@ -6,10 +6,11 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/java/features", //the path where Cucumber feature files are located.
-        glue = "steps" //Cucumber where to find the step definitions (in the steps and core packages)
+        glue = "steps"//Cucumber where to find the step definitions (in the steps and core packages)
 )
+
 public class TestRunner extends AbstractTestNGCucumberTests {
-    //Above Etxends which is a base class provided by Cucumber to run the tests with TestNG
+    //Above Extends which is a base class provided by Cucumber to run the tests with TestNG
     @DataProvider //allows running multiple Cucumber scenarios as separate tests in TestNG
     @Override
     public Object[][] scenarios() {

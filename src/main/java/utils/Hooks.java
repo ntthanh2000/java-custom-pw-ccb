@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 
 
 public class Hooks {
-    private static Playwright playwright;
-    private static Browser browser;
-    private static final Logger log = LoggerFactory.getLogger(Hooks.class);
-    private static final Utils utils = new Utils();
-    private BrowserContext context;
-    private Page page;
+    static Playwright playwright;
+    static Browser browser;
+    static final Logger log = LoggerFactory.getLogger(Hooks.class);
+    static final Utils utils = new Utils();
+    BrowserContext context;
+    Page page;
 
     @BeforeAll
     public static void launchBrowser() {

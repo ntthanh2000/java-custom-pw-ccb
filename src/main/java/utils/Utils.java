@@ -5,11 +5,11 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
 
 public class Utils {
-    String headless = !System.getenv("headless").isEmpty() ? System.getenv("headless") : "false";
+//    String headless = !System.getenv("headless").isEmpty() ? System.getenv("headless") : "false";
 
     public BrowserType.LaunchOptions setChromeOptions() {
         BrowserType.LaunchOptions options = new BrowserType.LaunchOptions();
-        options.setHeadless(Boolean.parseBoolean(headless));
+        options.setHeadless(Boolean.parseBoolean("false"));
         return options;
     }
 
