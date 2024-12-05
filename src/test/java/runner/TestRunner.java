@@ -6,7 +6,8 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/java/features", //the path where Cucumber feature files are located.
-        glue = "steps"//Cucumber where to find the step definitions (in the steps and core packages)
+        glue = {"steps", "utils"},
+        plugin = {"pretty"}//Cucumber where to find the step definitions (in the steps and core packages)
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {
