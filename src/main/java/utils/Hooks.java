@@ -10,18 +10,24 @@ import org.slf4j.LoggerFactory;
 
 
 public class Hooks {
-    static Playwright playwright;
+    public static Playwright playwright;
     static Browser browser;
     static final Logger log = LoggerFactory.getLogger(Hooks.class);
     static final Utils utils = new Utils();
-    BrowserContext context;
-    Page page;
+    static BrowserContext context;
+    public static Page page;
+
 
     @BeforeAll
     public static void launchBrowser() {
         log.info("Opening browser...");
         playwright = Playwright.create();
         browser = utils.launchBrowser(playwright, "chrome");
+        log.info("Creating new context...");
+        context = browser.newContext();
+        log.info("Creating new page...");
+        page = context.newPage();
+
     }
 
     @AfterAll
@@ -30,16 +36,18 @@ public class Hooks {
         playwright.close();
     }
 
-    @Before
-    void createContextAndPage() {
-        context = browser.newContext();
-        page = context.newPage();
-    }
-
-    @After
-    void closeContext() {
-        context.close();
-    }
+//    @Before
+//    static void createContextAndPage() {
+//        log.info("Creating new context...");
+//        context = browser.newContext();
+//        log.info("Creating new page...");
+//        page = context.newPage();
+//    }
+//
+//    @After
+//    static void closeContext() {
+////        context.close();
+//    }
 
     public Playwright getPlaywright() {
         return playwright;
@@ -49,7 +57,7 @@ public class Hooks {
         return context;
     }
 
-    public Page getPage() {
+    public static Page getPage() {
         return page;
     }
 }

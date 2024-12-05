@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.29.0</allure.version>
         <aspectj.version>1.9.22.1</aspectj.version>
-        <!--        <headless>${headless}</headless>-->
+        <headless>false</headless>
     </properties>
 
     <dependencyManagement>
