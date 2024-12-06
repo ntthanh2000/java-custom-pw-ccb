@@ -5,10 +5,11 @@ import io.cucumber.java.en.When;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.Basics;
+import utils.Utils;
 
 public class Steps1 {
     static Logger log = LoggerFactory.getLogger(Steps1.class);
-    static Basics basics = new Basics();
+    static Basics basics = new Basics(Utils.getPage());
 
     @When("open url {string}")
     public void open_url_string(String url) {

@@ -1,16 +1,26 @@
 package utils;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.*;
 
 public class Utils {
+    public static ThreadLocal<Page> pageInstance = new ThreadLocal<>();
+    public static ThreadLocal<BrowserContext> contextInstance = new ThreadLocal<>();
     String headless = System.getenv("headless");
 
     public BrowserType.LaunchOptions setChromeOptions() {
         BrowserType.LaunchOptions options = new BrowserType.LaunchOptions();
         options.setHeadless(Boolean.parseBoolean(headless));
         return options;
+    }
+
+    public Page initDriver(){
+        Playwright playwright = Playwright.create();
+        Browser browser = launchBrowser(playwright, "chrome");
+        BrowserContext context = browser.newContext();
+        Page page = context.newPage();
+        pageInstance.set(page);
+        contextInstance.set(context);
+        return page;
     }
 
     public Browser launchBrowser(Playwright playwright, String browserName) {
@@ -36,5 +46,13 @@ public class Utils {
                 break;
         }
         return browser;
+    }
+
+    public static synchronized Page getPage(){
+        return pageInstance.get();
+    }
+
+    public static synchronized BrowserContext getContext(){
+        return contextInstance.get();
     }
 }

@@ -12,7 +12,7 @@ import org.testng.annotations.DataProvider;
 
 public class TestRunner extends AbstractTestNGCucumberTests {
     //Above Extends which is a base class provided by Cucumber to run the tests with TestNG
-    @DataProvider //allows running multiple Cucumber scenarios as separate tests in TestNG
+    @DataProvider(parallel = true) //allows running multiple Cucumber scenarios as separate tests in TestNG
     @Override
     public Object[][] scenarios() {
         return super.scenarios();

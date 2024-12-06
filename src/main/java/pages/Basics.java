@@ -7,10 +7,15 @@ import utils.Hooks;
 
 public class Basics {
     Page page;
+//    Hooks hooks;
+
+    public Basics(Page page){
+        this.page = page;
+    }
 
     public void goToUrl(String url) {
-        page = Hooks.getPage();
-        page.navigate(url);
+//        page = hooks.getPage();
+        this.page.navigate(url);
     }
 
     public String getTextOfElement(){
