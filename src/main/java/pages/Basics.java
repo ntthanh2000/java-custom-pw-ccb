@@ -14,7 +14,6 @@ public class Basics {
     }
 
     public void goToUrl(String url) {
-//        page = hooks.getPage();
         page.navigate(url);
     }
 
