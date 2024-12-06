@@ -15,7 +15,7 @@ public class Basics {
 
     public void goToUrl(String url) {
 //        page = hooks.getPage();
-        this.page.navigate(url);
+        page.navigate(url);
     }
 
     public String getTextOfElement(){
