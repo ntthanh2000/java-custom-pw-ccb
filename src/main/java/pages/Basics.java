@@ -6,10 +6,10 @@ import com.microsoft.playwright.Playwright;
 import utils.Hooks;
 
 public class Basics {
-//    Hooks hooks = new Hooks();
-    Page page = Hooks.getPage();
+    Page page;
 
     public void goToUrl(String url) {
+        page = Hooks.getPage();
         page.navigate(url);
     }
 

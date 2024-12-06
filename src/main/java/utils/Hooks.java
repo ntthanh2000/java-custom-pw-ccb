@@ -8,6 +8,8 @@ import io.cucumber.java.BeforeAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Paths;
+
 
 public class Hooks {
     public static Playwright playwright;
@@ -36,14 +38,21 @@ public class Hooks {
     public void createContextAndPage() {
         log.info("Creating new context...");
         context = browser.newContext();
-        log.info("Creating new page...");
+        context.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
+
+        log.info("Opening new page...");
         page = context.newPage();
     }
-//
-//    @After
-//    static void closeContext() {
-//        context.close();
-//    }
+
+    @After
+    public void closeContext() {
+        context.tracing().stop(new Tracing.StopOptions()
+                .setPath(Paths.get("trace.zip")));
+        context.close();
+    }
 
     public static Page getPage() {
         return page;
