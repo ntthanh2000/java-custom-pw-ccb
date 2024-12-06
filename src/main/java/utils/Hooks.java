@@ -15,7 +15,7 @@ public class Hooks {
 //    public static Playwright playwright;
 //    static Browser browser;
     static final Logger log = LoggerFactory.getLogger(Hooks.class);
-    static final Utils utils = new Utils();
+    public Utils utils;
 //    BrowserContext context;
     public Page page;
 
@@ -36,13 +36,15 @@ public class Hooks {
     @Before
     public void createContextAndPage() {
         log.info("Opening browser...");
+        utils = new Utils();
         page = utils.initDriver();
+
     }
 
     @After
     public void closeContext() {
-//        page.close();
         log.info("Closing browser...");
-        page.close();
+//        page.close();
+        utils.closeDriver();
     }
 }

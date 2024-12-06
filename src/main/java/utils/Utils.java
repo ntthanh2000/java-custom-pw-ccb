@@ -3,8 +3,11 @@ package utils;
 import com.microsoft.playwright.*;
 
 public class Utils {
+    //thread vars to run parallel
     public static ThreadLocal<Page> pageInstance = new ThreadLocal<>();
     public static ThreadLocal<BrowserContext> contextInstance = new ThreadLocal<>();
+
+    //headless value is false by default
     String headless = System.getenv("headless");
 
     public BrowserType.LaunchOptions setChromeOptions() {
@@ -46,6 +49,10 @@ public class Utils {
                 break;
         }
         return browser;
+    }
+
+    public void closeDriver(){
+        contextInstance.get().close();
     }
 
     public static synchronized Page getPage(){
