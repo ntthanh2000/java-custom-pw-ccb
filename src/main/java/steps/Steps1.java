@@ -19,7 +19,13 @@ public class Steps1 {
     }
 
     @Then("see page title as {string}")
-    public void see_page_title_as(String title) {
+    public void see_page_title_as_string(String title) {
         log.info(title);
+        basics.verifyPageTitle(title);
+    }
+
+    @When("click button {string}")
+    public void click_button_string(String button) {
+        basics.clickButton(button);
     }
 }
