@@ -7,18 +7,18 @@ public class Utils {
     public static ThreadLocal<Page> pageInstance = new ThreadLocal<>();
     public static ThreadLocal<BrowserContext> contextInstance = new ThreadLocal<>();
 
-    //headless value is false by default
-    String headless = System.getenv("headless");
-
     public BrowserType.LaunchOptions setChromeOptions() {
+        String headless = System.getProperty("headless")==null ? "true" : System.getProperty("headless");
         BrowserType.LaunchOptions options = new BrowserType.LaunchOptions();
         options.setHeadless(Boolean.parseBoolean(headless));
         return options;
     }
 
-    public Page initDriver(){
+    public Page initDriver() {
+        String browserName = System.getProperty("browser")==null ? "chrome" : System.getProperty("browser");
+
         Playwright playwright = Playwright.create();
-        Browser browser = launchBrowser(playwright, "chrome");
+        Browser browser = launchBrowser(playwright, browserName);
         BrowserContext context = browser.newContext();
         Page page = context.newPage();
         pageInstance.set(page);
@@ -51,15 +51,15 @@ public class Utils {
         return browser;
     }
 
-    public void closeDriver(){
+    public void closeDriver() {
         contextInstance.get().close();
     }
 
-    public static synchronized Page getPage(){
+    public static synchronized Page getPage() {
         return pageInstance.get();
     }
 
-    public static synchronized BrowserContext getContext(){
+    public static synchronized BrowserContext getContext() {
         return contextInstance.get();
     }
 }

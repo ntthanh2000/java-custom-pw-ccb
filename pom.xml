@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.29.0</allure.version>
         <aspectj.version>1.9.22.1</aspectj.version>
-        <headless>${headless}</headless>
     </properties>
 
     <dependencyManagement>
@@ -30,6 +29,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
         <dependency>
             <groupId>org.apache.maven</groupId>
